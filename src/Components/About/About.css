@@ -1,0 +1,84 @@
+.about_grid {
+    display: grid;
+    grid-template: 60px 1fr / repeat(12, 1fr);
+    width: 100%;
+}
+
+#juhani {
+    grid-area: 2 / 2 / span 2 / span 4;
+    width: 90%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.about_me {
+    grid-area: 2 / 6 / span 2 / -1;
+    width: 80%;
+}
+
+p {
+    color: #373636;
+    margin-bottom: 20px;
+    line-height: 1.4em;
+    font-size: 1.2em;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    padding: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.title {
+    color: white;
+    background-color: #0C1778;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: black;
+    margin-left: 20px;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.some_icon {
+    margin: 30px 20px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+
+    #juhani {
+        height: 450px;
+    }
+
+    .about_me {
+        width: 90%;
+    }
+
+}
+
+@media only screen and (max-width: 860px) {
+
+    #juhani {
+        grid-area: 2 / 1 / -1 / -1;
+        margin: 0 auto;
+        object-fit: contain;
+        box-shadow: none;
+        width: 95%;
+    }
+
+    .about_me {
+        grid-area: 3 / 1 / -1 / -1;
+        margin: 0 auto;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+}
