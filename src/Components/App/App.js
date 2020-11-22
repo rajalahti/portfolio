@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "../Navbar/Navbar";
 import About from "../About/About";
 import Fade from 'react-reveal/Fade';
+import Skills from '../Skills/Skills';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Navbar />
         <Fade >
           <About />
+          <Skills />
         </Fade>
       </header>
     </div>
