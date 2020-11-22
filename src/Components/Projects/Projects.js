@@ -72,6 +72,13 @@ export default function Project() {
               <section className="project_grid" key={index}>
                 <h2>{element.name}</h2>
                 <img src={element.image} alt={element.name} />
+                
+                <div className="project_description">
+                  <h3>Description</h3>
+                  <p>{element.description}</p>
+                  <h3>Tech</h3>
+                  <p className="project_tech">{element.tech}</p>
+                </div>
                 {element.live ? (
                   <a
                     href={element.live}
@@ -83,12 +90,6 @@ export default function Project() {
                 ) : (
                   ""
                 )}
-                <div className="project_description">
-                  <h3>Description</h3>
-                  <p>{element.description}</p>
-                  <h3>Tech</h3>
-                  <p className="project_tech">{element.tech}</p>
-                </div>
               </section>
             );
           })}

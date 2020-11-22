@@ -54,7 +54,7 @@ li:hover {
     }   
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 780px) {
 
     #logo {
         display: none;
@@ -73,15 +73,19 @@ li:hover {
 }
 
 
-@media only screen and (max-width: 450) {
-    ul {
-        display: block;
-    }   
-
+@media only screen and (max-width: 450px) {
     li {
         margin: 35px 10px 20px 35px;
         padding: 5px;
-        font-size: 1.8em;
+        font-size: 1.5em;
     } 
+}
 
+
+@media only screen and (max-width: 375px) {
+    li {
+        margin: 20px 10px 20px 35px;
+        padding: 5px;
+        font-size: 1em;
+    } 
 }
