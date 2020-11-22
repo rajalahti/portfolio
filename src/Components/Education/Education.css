@@ -1,0 +1,65 @@
+.school {
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+.school_logo_div {
+    width: 250px;
+    height: 80px;
+  }
+
+.school_logo {
+    width: 250px;
+    height: 100%;
+    object-fit: contain;
+  }
+
+.education_title {
+    font-size: 1.3em;
+    margin-bottom: 10px,
+  }
+
+@media only screen and (max-width: 1200px) {
+  .school_logo_div {
+    width: 180px;
+  }
+
+  .school_logo {
+    width: 180px;
+  }  
+}
+
+@media only screen and (max-width: 660px) {
+  .school_logo_div {
+    width: 130px;
+  }
+
+  .school_logo {
+    width: 130px;
+  }  
+
+  .education_description p {
+    font-size: 0.9em;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .school {
+    flex-direction: column;
+  }
+
+  .school_logo_div {
+    width: 200px;
+  }
+
+  .school_logo {
+    width: 200px;
+  }  
+
+  .education_description p {
+    font-size: 1em;
+  }
+}
+

@@ -4,30 +4,32 @@ import {
   DiHtml5,
   DiCss3,
   DiJavascript1,
-  DiNodejs,
+  DiNodejsSmall,
   DiGithubBadge,
   DiAws,
   DiBitbucket,
   DiVisualstudio,
 } from "react-icons/di";
+import Fade from "react-reveal/Fade";
 
 const styles = {
   tech_container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginTop: 50
+    display: "flex",
+    flexWrap: "wrap",
+    marginTop: 50,
   },
   tech_icon: {
-    width: '33%',
-    marginBottom: 30
-  }
-}
+    width: "33%",
+    marginBottom: 30,
+  },
+};
 
 export default function Tech() {
   return (
     <section id="tech_section">
-      <div className="title">
-        <h1>SKILLS</h1>
+      <Fade right>
+        <div className="title">
+          <h1>SKILLS</h1>
         </div>
         <div style={styles.tech_container}>
           <DiHtml5
@@ -54,7 +56,7 @@ export default function Tech() {
             size="5em"
             title="React"
           />
-          <DiNodejs
+          <DiNodejsSmall
             style={styles.tech_icon}
             color="#689f63"
             size="5em"
@@ -85,7 +87,7 @@ export default function Tech() {
             title="Visual Studio"
           />
         </div>
-      
+      </Fade>
     </section>
   );
 }

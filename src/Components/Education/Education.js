@@ -1,26 +1,28 @@
 import React from "react";
+import './Education.css';
+import Fade from "react-reveal/Fade";
 
 const styles = {
-    school: {
-        borderBottom: '2px solid lightgray',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    school_logo_div: {
-        width: 250,
-        heigth: 80
-    },
-    logo: {
-        width: 250,
-        heigth: '100%',
-        objectFit: 'contain'
-    },
-    title: {
-        fontSize: '1.3em',
-        marginBottom: 10
-    }
-}
+  school: {
+    borderBottom: "2px solid lightgray",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  school_logo_div: {
+    width: 250,
+    heigth: 80,
+  },
+  logo: {
+    width: 250,
+    heigth: "100%",
+    objectFit: "contain",
+  },
+  title: {
+    fontSize: "1.3em",
+    marginBottom: 10,
+  },
+};
 
 const education = [
   {
@@ -28,7 +30,7 @@ const education = [
     alt: "Vaasan Yliopisto - University of Vaasa",
     title: "Master of Science in Economics",
     text:
-      "I studiet at Vaasa from 2007 to 2011. I majored in business law and minored in accounting.",
+      "I studied in Vaasa from 2007 to 2011. I majored in business law and minored in accounting.",
   },
   {
     logo: "photos/codecademy_logo.png",
@@ -47,22 +49,30 @@ const education = [
 ];
 
 export default function Education() {
-  return <section id="education_section">
-      <div className="title">
+  return (
+    <section id="education_section">
+      <Fade left>
+        <div className="title">
           <h1>EDUCATION</h1>
         </div>
-          { education.map((element, index) => {
-              return (
-                  <div style={styles.school} id={index}>
-                      <div style={styles.school_logo_div}>
-                      <img style={styles.logo} className="school_logo" src={element.logo} alt={element.alt} />
-                      </div>
-                      <div className="desctiption">
-                          <h2 style={styles.title}>{element.title}</h2>
-                          <p>{element.text}</p>
-                      </div>                  
-                  </div>
-              )
-          }) }
-  </section>;
+        {education.map((element, index) => {
+          return (
+            <div className="school" key={index}>
+              <div className="school_logo_div">
+                <img
+                  className="school_logo"
+                  src={element.logo}
+                  alt={element.alt}
+                />
+              </div>
+              <div className="education_description">
+                <h2 className="education_title">{element.title}</h2>
+                <p>{element.text}</p>
+              </div>
+            </div>
+          );
+        })}
+      </Fade>
+    </section>
+  );
 }

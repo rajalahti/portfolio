@@ -1,5 +1,6 @@
 import React from "react";
 import "./Projects.css";
+import Fade from "react-reveal/Fade";
 
 const projects = [
   {
@@ -8,10 +9,10 @@ const projects = [
     image: "photos/fenniaFI.jpg",
     live: "https://www.fennia.fi",
     git: "",
-    description: `A new, fresh website for a Finnish insurance company Fennia. 
+    description: `A new, fresh website for Fennia, a Finnish insurance company. 
     I was a team member in the project and helped to build, improve and 
     maintain the website.`,
-    tech: "React, AWS, GatsbyJS, Contentful",
+    tech: "React, AWS, GatsbyJS, Contentful, NodeJS",
   },
   {
     name: "Kompassi - Insurance Sales UI",
@@ -19,9 +20,9 @@ const projects = [
     image: "photos/Kompassi.jpg",
     live: "",
     git: "",
-    description: `We developed a front end insurance sales UI for Fennias account managers with
-    Rohea, a software company based in Helsinki. I've been working at this project since 
-    october 2015 in a project manager / business analyst role.`,
+    description: `We developed a front end insurance sales UI for Fennia's account managers with
+    Rohea, a software company based in Helsinki. I've been working on this project since 
+    october 2015 in a project manager and business analyst role.`,
     tech: "React, MongoDB, PACE-platform from Rohea",
   },
   {
@@ -61,32 +62,38 @@ const projects = [
 export default function Project() {
   return (
     <main className="projects_grid">
-      <div className="title">
-        <h1>PROJECTS</h1>
-      </div>
-      <div className="project_flex">
-      {projects.map((element, index) => {
-        return (
-          <section className="project_grid">
-            <h2>{element.name}</h2>
-            <img src={element.image} alt="name" />
-            {element.live ? (
-              <a href={element.live} target="_blank" rel="noreferrer noopener">
-                Live version
-              </a>
-            ) : (
-              ""
-            )}
-            <div className="project_description">
-            <h3>Description</h3>
-            <p >{element.description}</p>
-            <h3>Tech</h3>
-            <p className="project_tech">{element.tech}</p>
-            </div>
-          </section>
-        );
-      })}
-      </div>
+      <Fade up>
+        <div className="title">
+          <h1>PROJECTS</h1>
+        </div>
+        <div className="project_flex">
+          {projects.map((element, index) => {
+            return (
+              <section className="project_grid" key={index}>
+                <h2>{element.name}</h2>
+                <img src={element.image} alt={element.name} />
+                {element.live ? (
+                  <a
+                    href={element.live}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Live version
+                  </a>
+                ) : (
+                  ""
+                )}
+                <div className="project_description">
+                  <h3>Description</h3>
+                  <p>{element.description}</p>
+                  <h3>Tech</h3>
+                  <p className="project_tech">{element.tech}</p>
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </Fade>
     </main>
   );
 }
