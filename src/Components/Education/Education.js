@@ -24,23 +24,25 @@ const styles = {
   },
 };
 
+const photoPath = "https://portfolio-images-juhani.s3.eu-north-1.amazonaws.com/";
+
 const education = [
   {
-    logo: "photos/vyy_logo.png",
+    logo: photoPath + "vyy_logo.png",
     alt: "Vaasan Yliopisto - University of Vaasa",
     title: "Master of Science in Economics",
     text:
       "I studied in Vaasa from 2007 to 2011. I majored in business law and minored in accounting.",
   },
   {
-    logo: "photos/codecademy_logo.png",
+    logo: photoPath + "codecademy_logo.png",
     alt: "CodeCademy",
     title: "Full-Stack Developer",
     text:
       "I'm currently studying at CodeCademy to become a Full-stack developer.",
   },
   {
-    logo: "photos/finva_logo.png",
+    logo: photoPath + "finva_logo.png",
     alt: "FINVA - Financial training",
     title: "Insurance degree (VTS)",
     text:
