@@ -2,28 +2,6 @@ import React from "react";
 import './Education.css';
 import Fade from "react-reveal/Fade";
 
-const styles = {
-  school: {
-    borderBottom: "2px solid lightgray",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  school_logo_div: {
-    width: 250,
-    heigth: 80,
-  },
-  logo: {
-    width: 250,
-    heigth: "100%",
-    objectFit: "contain",
-  },
-  title: {
-    fontSize: "1.3em",
-    marginBottom: 10,
-  },
-};
-
 const photoPath = "https://portfolio-images-juhani.s3.eu-north-1.amazonaws.com/";
 
 const education = [
