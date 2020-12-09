@@ -26,6 +26,12 @@ export default function About() {
           <SocialIcon
             className="some_icon"
             url="https://www.linkedin.com/in/juhani-rajalahti-b822b911/"
+            target="_blank"
+          />
+          <SocialIcon
+            className="some_icon"
+            url="https://github.com/rajalahti"
+            target="_blank"
           />
           <SocialIcon
             className="some_icon"
