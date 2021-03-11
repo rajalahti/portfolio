@@ -29,6 +29,30 @@ const projects = [
     tech: "React, MongoDB, PACE-platform from Rohea",
   },
   {
+    name: "Espoo Today",
+    type: "For fun",
+    image: photoPath + "espoo-today.jpg",
+    live: "https://espoo-today.netlify.app/",
+    git: "",
+    description: `Weather and current events app for Espoo, Finland. I used multiple open API's 
+    for this project: Open weather map API, Helsinki's event API and real-time 
+    water temperature measurements done by Forum Virium Helsinki using IOT devices.`,
+    tech:
+      "React, Material UI, Netlify",
+  },
+  {
+    name: "Finnish Covid-19 Vaccination Tracker",
+    type: "For fun",
+    image: photoPath + "vaccine-tracker.jpg",
+    live: "https://koronarokotukset.netlify.app/",
+    git: "",
+    description: `Covid-19 vaccinations were progressing quite slowly in Finland. I used open data API's to build 
+    a vaccination tracker. The page calculates how long it will take to vaccinate 70% and finally 100% of the 
+    Finnish population.`,
+    tech:
+      "React, Material UI, Netlify",
+  },
+  {
     name: "Random Traveller",
     type: "For fun",
     image: photoPath + "random_traveller.jpg",
