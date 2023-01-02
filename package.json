@@ -18,6 +18,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "client-s3-deploy": "aws s3 sync build/ s3://portfolio-juhani-bucket-deployment-test",
+    "client-cloudfront-invalidation": "aws cloudfront create-invalidation --distribution-id E176933KPKYQB0 --paths /*",
+    "client-deploy": "npm run build && npm run client-s3-deploy && npm run client-cloudfront-invalidation",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

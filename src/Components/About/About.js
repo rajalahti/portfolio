@@ -12,7 +12,7 @@ export default function About() {
             <h1>JUHANI RAJALAHTI</h1>
           </div>
           <p>
-          I'm a developer / insurance professional from Espoo, Finland. I am currently working for Fennia, 
+          I'm a solutions architect and insurance professional from Espoo, Finland. I am currently working for Fennia, 
           a Finnish insurance company. During my career, I have worked in sales positions as an account 
           manager, done P&C underwriting as a risk manager and currently our team is developing digital 
           sales and customer service tools for Fennia.

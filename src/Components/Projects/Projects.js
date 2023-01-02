@@ -41,16 +41,15 @@ const projects = [
       "React, Material UI, Netlify",
   },
   {
-    name: "Finnish Covid-19 Vaccination Tracker",
+    name: "Satukone - AI Story Generator",
     type: "For fun",
-    image: photoPath + "vaccine-tracker.jpg",
-    live: "https://koronarokotukset.netlify.app/",
+    image: photoPath + "fantasy.jpg",
+    live: "https://satukone.rajalahti.me",
     git: "",
-    description: `Covid-19 vaccinations were progressing quite slowly in Finland. I used open data API's to build 
-    a vaccination tracker. The page calculates how long it will take to vaccinate 70% and finally 100% of the 
-    Finnish population.`,
+    description: `A story generator app which uses GPT-3 to generate stories. 
+    I used DeepL's API to translate the stories to Finnish and AWS Polly to generate audio files from the stories.`,
     tech:
-      "React, Material UI, Netlify",
+      "React, Material UI, GTP3, DeepL-translator, AWS Polly",
   },
   {
     name: "Random Traveller",
