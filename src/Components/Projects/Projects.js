@@ -1,5 +1,4 @@
-import React from "react";
-import "./Projects.css";
+import React, { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
 import { FiExternalLink } from "react-icons/fi";
 
@@ -32,13 +31,13 @@ const projects = [
     name: "Espoo Today",
     type: "For fun",
     image: photoPath + "espoo-today.jpg",
-    live: "https://espoo-today.netlify.app/",
+    live: "https://espoo-today.rajalahti.me",
     git: "",
     description: `Weather and current events app for Espoo, Finland. I used multiple open API's 
     for this project: Open weather map API, Helsinki's event API and real-time 
     water temperature measurements done by Forum Virium Helsinki using IOT devices.`,
     tech:
-      "React, Material UI, Netlify",
+      "React, Material UI, AWS",
   },
   {
     name: "Satukone - AI Story Generator",
@@ -86,38 +85,257 @@ const projects = [
 ];
 
 export default function Project() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  const styles = {
+    container: {
+      padding: "20px 0 60px",
+    },
+    title: {
+      marginBottom: "40px",
+      textAlign: "center"
+    },
+    heading: {
+      fontSize: "2.5rem",
+      fontWeight: "bold",
+      background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+      display: "inline-block"
+    },
+    projectsGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(500px, 1fr))",
+      gap: "30px",
+      width: "100%",
+      "@media (max-width: 768px)": {
+        gridTemplateColumns: "1fr"
+      }
+    },
+    projectCard: {
+      display: "flex",
+      flexDirection: "column",
+      background: "rgba(255, 255, 255, 0.05)",
+      borderRadius: "12px",
+      overflow: "hidden",
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+      "&:hover": {
+        transform: "translateY(-5px)",
+        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)"
+      }
+    },
+    cardHeader: {
+      padding: "20px 25px 0",
+    },
+    cardTitle: {
+      fontSize: "1.6rem",
+      fontWeight: "600",
+      marginBottom: "10px",
+      color: "#f8f9fa"
+    },
+    cardType: {
+      display: "inline-block",
+      padding: "4px 10px",
+      borderRadius: "4px",
+      fontSize: "0.8rem",
+      fontWeight: "500",
+      backgroundColor: "#4cc9f0",
+      color: "#000",
+      marginBottom: "15px"
+    },
+    imageContainer: {
+      width: "100%",
+      height: "250px",
+      overflow: "hidden"
+    },
+    projectImage: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      transition: "transform 0.5s ease"
+    },
+    cardContent: {
+      padding: "20px 25px",
+      flex: "1"
+    },
+    sectionTitle: {
+      fontSize: "1.1rem",
+      fontWeight: "600",
+      marginBottom: "8px",
+      color: "#e0e0e0"
+    },
+    description: {
+      fontSize: "0.95rem",
+      lineHeight: "1.6",
+      color: "#bbbbbb",
+      marginBottom: "20px"
+    },
+    techStack: {
+      color: "#8ebfff",
+      fontSize: "0.9rem",
+      marginBottom: "20px"
+    },
+    linkButton: {
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 16px",
+      backgroundColor: "transparent",
+      border: "1px solid #4cc9f0",
+      borderRadius: "4px",
+      color: "#4cc9f0",
+      textDecoration: "none",
+      fontSize: "0.9rem",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        backgroundColor: "#4cc9f0",
+        color: "#000"
+      }
+    },
+    linkIcon: {
+      marginLeft: "6px"
+    }
+  };
+
   return (
-    <main className="projects_grid">
+    <main style={styles.container}>
       <Fade up>
-        <div className="title">
-          <h1>PROJECTS</h1>
+        <div style={styles.title}>
+          <h1 style={styles.heading}>PROJECTS</h1>
         </div>
-        <div className="project_flex">
-          {projects.map((element, index) => {
-            return (
-              <section className="project_grid" key={index}>
-                <h2>{element.name}</h2>
-                <img src={element.image} alt={element.name} />
-                <div className="project_description">
-                  <h3>Description</h3>
-                  <p>{element.description}</p>
-                  <h3>Tech</h3>
-                  <p className="project_tech">{element.tech}</p>
-                </div>
-                {element.live ? (
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(450px, 1fr))",
+          gap: "30px",
+          width: "100%"
+        }}>
+          {projects.map((project, index) => (
+            <section 
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                background: "rgba(255, 255, 255, 0.05)",
+                borderRadius: "12px",
+                overflow: "hidden",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              }}
+            >
+              <div style={{padding: "20px 25px 0"}}>
+                <h2 style={{
+                  fontSize: "1.6rem",
+                  fontWeight: "600",
+                  marginBottom: "10px",
+                  color: "#f8f9fa"
+                }}>
+                  {project.name}
+                </h2>
+                <span style={{
+                  display: "inline-block",
+                  padding: "4px 10px",
+                  borderRadius: "4px",
+                  fontSize: "0.8rem",
+                  fontWeight: "500",
+                  backgroundColor: "#4cc9f0",
+                  color: "#000",
+                  marginBottom: "15px"
+                }}>
+                  {project.type}
+                </span>
+              </div>
+              
+              <div style={{
+                width: "100%",
+                height: "250px",
+                overflow: "hidden"
+              }}>
+                <img 
+                  src={project.image} 
+                  alt={project.name}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.5s ease"
+                  }}
+                />
+              </div>
+              
+              <div style={{padding: "20px 25px", flex: "1"}}>
+                <h3 style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  marginBottom: "8px",
+                  color: "#e0e0e0"
+                }}>
+                  Description
+                </h3>
+                <p style={{
+                  fontSize: "0.95rem",
+                  lineHeight: "1.6",
+                  color: "#bbbbbb",
+                  marginBottom: "20px"
+                }}>
+                  {project.description}
+                </p>
+                
+                <h3 style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  marginBottom: "8px",
+                  color: "#e0e0e0"
+                }}>
+                  Tech
+                </h3>
+                <p style={{
+                  color: "#8ebfff",
+                  fontSize: "0.9rem",
+                  marginBottom: "20px"
+                }}>
+                  {project.tech}
+                </p>
+                
+                {project.live && (
                   <a
-                    href={element.live}
+                    href={project.live}
                     target="_blank"
                     rel="noreferrer noopener"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "8px 16px",
+                      backgroundColor: "transparent",
+                      border: "1px solid #4cc9f0",
+                      borderRadius: "4px",
+                      color: "#4cc9f0",
+                      textDecoration: "none",
+                      fontSize: "0.9rem",
+                      transition: "all 0.3s ease",
+                    }}
                   >
-                    Live version<FiExternalLink style={{marginLeft: 5}}/>
+                    Live version <FiExternalLink style={{marginLeft: "6px"}} />
                   </a>
-                ) : (
-                  ""
                 )}
-              </section>
-            );
-          })}
+              </div>
+            </section>
+          ))}
         </div>
       </Fade>
     </main>

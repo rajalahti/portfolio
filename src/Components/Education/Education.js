@@ -1,5 +1,4 @@
-import React from "react";
-import './Education.css';
+import React, { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
 
 const photoPath = "https://portfolio-images-juhani.s3.eu-north-1.amazonaws.com/";
@@ -29,29 +28,105 @@ const education = [
 ];
 
 export default function Education() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
   return (
-    <section id="education_section">
+    <section style={{width: "100%"}}>
       <Fade left>
-        <div className="title">
-          <h1>EDUCATION</h1>
+        <div style={{
+          textAlign: "center",
+          marginBottom: "40px"
+        }}>
+          <h1 style={{
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+            background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            display: "inline-block"
+          }}>EDUCATION</h1>
         </div>
-        {education.map((element, index) => {
-          return (
-            <div className="school" key={index}>
-              <div className="school_logo_div">
-                <img
-                  className="school_logo"
-                  src={element.logo}
-                  alt={element.alt}
-                />
+        
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px"
+        }}>
+          {education.map((element, index) => {
+            return (
+              <div 
+                key={index}
+                style={{
+                  display: "flex",
+                  flexDirection: isMobile ? "column" : "row",
+                  alignItems: isMobile ? "flex-start" : "center",
+                  background: "rgba(255, 255, 255, 0.05)",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  padding: "25px",
+                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+                  transition: "transform 0.3s ease",
+                }}
+              >
+                <div style={{
+                  width: "120px",
+                  height: "120px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  background: "rgba(255, 255, 255, 0.9)",
+                  borderRadius: "12px",
+                  padding: "15px",
+                  marginRight: isMobile ? 0 : "25px",
+                  marginBottom: isMobile ? "20px" : 0,
+                  alignSelf: isMobile ? "center" : "flex-start",
+                  boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)"
+                }}>
+                  <img
+                    style={{
+                      maxWidth: "85%",
+                      maxHeight: "85%",
+                      objectFit: "contain",
+                      filter: "brightness(1)"
+                    }}
+                    src={element.logo}
+                    alt={element.alt}
+                  />
+                </div>
+                <div>
+                  <h2 style={{
+                    fontSize: "1.5rem",
+                    fontWeight: "600",
+                    marginBottom: "8px",
+                    color: "#f8f9fa",
+                    textAlign: isMobile ? "center" : "left"
+                  }}>{element.title}</h2>
+                  <p style={{
+                    fontSize: "1rem",
+                    lineHeight: "1.6",
+                    color: "#e0e0e0"
+                  }}>{element.text}</p>
+                </div>
               </div>
-              <div className="education_description">
-                <h2 className="education_title">{element.title}</h2>
-                <p>{element.text}</p>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </Fade>
     </section>
   );

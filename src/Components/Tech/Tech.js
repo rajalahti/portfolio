@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   DiReact,
   DiHtml5,
@@ -12,80 +12,98 @@ import {
 } from "react-icons/di";
 import Fade from "react-reveal/Fade";
 
-const styles = {
-  tech_container: {
-    display: "flex",
-    flexWrap: "wrap",
-    marginTop: 50,
-  },
-  tech_icon: {
-    width: "33%",
-    marginBottom: 30,
-  },
-};
-
 export default function Tech() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  const techItems = [
+    { Icon: DiHtml5, color: "#e44d26", title: "HTML5" },
+    { Icon: DiCss3, color: "#1572b6", title: "CSS3" },
+    { Icon: DiJavascript1, color: "#f7df1e", title: "JavaScript" },
+    { Icon: DiReact, color: "#61dafb", title: "React" },
+    { Icon: DiNodejsSmall, color: "#689f63", title: "NodeJS" },
+    { Icon: DiGithubBadge, color: "#f5f5f5", title: "GitHub" },
+    { Icon: DiAws, color: "#ff9900", title: "AWS"},
+    { Icon: DiBitbucket, color: "#0052cc", title: "BitBucket" },
+    { Icon: DiVisualstudio, color: "#007acc", title: "Visual Studio" },
+  ];
+
   return (
-    <section id="tech_section">
+    <section style={{ width: "100%" }}>
       <Fade right>
-        <div className="title">
-          <h1>SKILLS</h1>
+        <div style={{
+          textAlign: "center",
+          marginBottom: "40px"
+        }}>
+          <h1 style={{
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+            background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            display: "inline-block"
+          }}>SKILLS</h1>
         </div>
-        <div style={styles.tech_container}>
-          <DiHtml5
-            style={styles.tech_icon}
-            color="#dc4d25"
-            size="5em"
-            title="HTML5"
-          />
-          <DiCss3
-            style={styles.tech_icon}
-            color="#0079c0"
-            size="5em"
-            title="CSS3"
-          />
-          <DiJavascript1
-            style={styles.tech_icon}
-            color="#ddb830"
-            size="5em"
-            title="JavaScript"
-          />
-          <DiReact
-            style={styles.tech_icon}
-            color="#61dbfb"
-            size="5em"
-            title="React"
-          />
-          <DiNodejsSmall
-            style={styles.tech_icon}
-            color="#689f63"
-            size="5em"
-            title="NodeJS"
-          />
-          <DiGithubBadge
-            style={styles.tech_icon}
-            color="black"
-            size="5em"
-            title="GitHub"
-          />
-          <DiAws
-            style={styles.tech_icon}
-            color="#f79400"
-            size="5em"
-            title="AWS (ApiGW, Lambda, DynamoDB etc.)"
-          />
-          <DiBitbucket
-            style={styles.tech_icon}
-            color="#194e7e"
-            size="5em"
-            title="BitBucket"
-          />
-          <DiVisualstudio
-            style={styles.tech_icon}
-            color="#2489ca"
-            size="5em"
-            title="Visual Studio"
-          />
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: isMobile 
+            ? "repeat(auto-fill, minmax(120px, 1fr))" 
+            : "repeat(auto-fill, minmax(150px, 1fr))",
+          gap: isMobile ? "15px" : "25px",
+          padding: "20px 0"
+        }}>
+          {techItems.map((item, index) => (
+            <div 
+              key={index}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: isMobile ? "15px" : "20px",
+                background: "rgba(255, 255, 255, 0.05)",
+                borderRadius: "12px",
+                transition: "transform 0.3s ease, background-color 0.3s ease",
+                cursor: "default",
+                "&:hover": {
+                  transform: "translateY(-10px)",
+                  background: "rgba(255, 255, 255, 0.1)"
+                }
+              }}
+            >
+              <item.Icon 
+                size={isMobile ? "3em" : "4em"} 
+                color={item.color}
+                style={{
+                  filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))",
+                  margin: "0 0 15px 0"
+                }}
+              />
+              <span style={{
+                fontSize: isMobile ? "0.8rem" : "0.9rem",
+                fontWeight: "500",
+                color: "#f8f9fa",
+                textAlign: "center"
+              }}>
+                {item.title}
+              </span>
+            </div>
+          ))}
         </div>
       </Fade>
     </section>
