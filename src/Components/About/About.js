@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SocialIcon } from "react-social-icons";
-import Fade from "react-reveal/Fade";
+import { motion } from "framer-motion";
 
 export default function About() {
   const [isMobile, setIsMobile] = useState(false);
@@ -20,6 +20,31 @@ export default function About() {
     // Clean up
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
+
+  // Animation variants
+  const fadeLeftVariant = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
+  const fadeRightVariant = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      }
+    }
+  };
 
   const styles = {
     container: {
@@ -86,75 +111,81 @@ export default function About() {
 
   return (
     <main style={styles.container}>
-      <Fade left>
-        <section style={styles.contentSection}>
-          <h1 style={styles.heading}>JUHANI RAJALAHTI</h1>
-          <p style={styles.paragraph}>
-            I'm a solutions architect and insurance professional from Espoo, Finland. I am currently working for Fennia, 
-            a Finnish insurance company. During my career, I have worked in sales positions as an account 
-            manager, done P&C underwriting as a risk manager and currently our team is developing digital 
-            sales and customer service tools for Fennia.
-          </p>
-          <p style={styles.paragraph}>
-            I've been interested in technology since childhood. I wrote my first program, a text-adventure game, 
-            in elementary school. Building new things has always been my passion. On these pages you can see some 
-            of my previous projects.
-          </p>
-          <h2 style={styles.contactHeading}>Contact me</h2>
-          <div style={styles.socialIcons}>
-            <SocialIcon
-              style={{
-                margin: "10px 10px 10px 0", 
-                transform: hoveredIcon === 'linkedin' ? "scale(1.15)" : "scale(1)", 
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                boxShadow: hoveredIcon === 'linkedin' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
-              }}
-              className="some_icon"
-              url="https://www.linkedin.com/in/juhani-rajalahti-b822b911/"
-              target="_blank"
-              bgColor="#4cc9f0"
-              onMouseEnter={() => setHoveredIcon('linkedin')}
-              onMouseLeave={() => setHoveredIcon(null)}
-            />
-            <SocialIcon
-              style={{
-                margin: "10px", 
-                transform: hoveredIcon === 'github' ? "scale(1.15)" : "scale(1)", 
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                boxShadow: hoveredIcon === 'github' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
-              }}
-              className="some_icon"
-              url="https://github.com/rajalahti"
-              target="_blank"
-              bgColor="#4cc9f0"
-              onMouseEnter={() => setHoveredIcon('github')}
-              onMouseLeave={() => setHoveredIcon(null)}
-            />
-            <SocialIcon
-              style={{
-                margin: "10px", 
-                transform: hoveredIcon === 'email' ? "scale(1.15)" : "scale(1)", 
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                boxShadow: hoveredIcon === 'email' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
-              }}
-              className="some_icon"
-              url="mailto:juhani.rajalahti@gmail.com"
-              bgColor="#4cc9f0"
-              onMouseEnter={() => setHoveredIcon('email')}
-              onMouseLeave={() => setHoveredIcon(null)}
-            />
-          </div>
-        </section>
-      </Fade>
-      <Fade right>
-        <div style={styles.imageSection}>
-          <img
-            style={styles.image}
-            src="https://portfolio-images-juhani.s3.eu-north-1.amazonaws.com/juhani_rajalahti.jpg"
-            alt="Juhani Rajalahti"
+      <motion.section 
+        style={styles.contentSection}
+        variants={fadeLeftVariant}
+        initial="hidden"
+        animate="visible"
+      >
+        <h1 style={styles.heading}>JUHANI RAJALAHTI</h1>
+        <p style={styles.paragraph}>
+          I'm a solutions architect and insurance professional from Espoo, Finland. I am currently working for Fennia, 
+          a Finnish insurance company. During my career, I have worked in sales positions as an account 
+          manager, done P&C underwriting as a risk manager and currently our team is developing digital 
+          sales and customer service tools for Fennia.
+        </p>
+        <p style={styles.paragraph}>
+          I've been interested in technology since childhood. I wrote my first program, a text-adventure game, 
+          in elementary school. Building new things has always been my passion. On these pages you can see some 
+          of my previous projects.
+        </p>
+        <h2 style={styles.contactHeading}>Contact me</h2>
+        <div style={styles.socialIcons}>
+          <SocialIcon
+            style={{
+              margin: "10px 10px 10px 0", 
+              transform: hoveredIcon === 'linkedin' ? "scale(1.15)" : "scale(1)", 
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              boxShadow: hoveredIcon === 'linkedin' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
+            }}
+            className="some_icon"
+            url="https://www.linkedin.com/in/juhani-rajalahti-b822b911/"
+            target="_blank"
+            bgColor="#4cc9f0"
+            onMouseEnter={() => setHoveredIcon('linkedin')}
+            onMouseLeave={() => setHoveredIcon(null)}
+          />
+          <SocialIcon
+            style={{
+              margin: "10px", 
+              transform: hoveredIcon === 'github' ? "scale(1.15)" : "scale(1)", 
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              boxShadow: hoveredIcon === 'github' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
+            }}
+            className="some_icon"
+            url="https://github.com/rajalahti"
+            target="_blank"
+            bgColor="#4cc9f0"
+            onMouseEnter={() => setHoveredIcon('github')}
+            onMouseLeave={() => setHoveredIcon(null)}
+          />
+          <SocialIcon
+            style={{
+              margin: "10px", 
+              transform: hoveredIcon === 'email' ? "scale(1.15)" : "scale(1)", 
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              boxShadow: hoveredIcon === 'email' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
+            }}
+            className="some_icon"
+            url="mailto:juhani.rajalahti@gmail.com"
+            bgColor="#4cc9f0"
+            onMouseEnter={() => setHoveredIcon('email')}
+            onMouseLeave={() => setHoveredIcon(null)}
           />
         </div>
-      </Fade>
+      </motion.section>
+      <motion.div 
+        style={styles.imageSection}
+        variants={fadeRightVariant}
+        initial="hidden"
+        animate="visible"
+      >
+        <img
+          style={styles.image}
+          src="https://portfolio-images-juhani.s3.eu-north-1.amazonaws.com/juhani_rajalahti.jpg"
+          alt="Juhani Rajalahti"
+        />
+      </motion.div>
     </main>
   );
 }

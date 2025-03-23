@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Fade from "react-reveal/Fade";
+import { motion } from "framer-motion";
 import { FiExternalLink } from "react-icons/fi";
 
 const photoPath = "https://portfolio-images-juhani.s3.eu-north-1.amazonaws.com/";
@@ -101,6 +101,38 @@ export default function Project() {
     // Clean up
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
+
+  // Animation variants
+  const fadeUpVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+  
+  const containerVariant = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+  
+  const itemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
 
   const styles = {
     container: {
@@ -215,129 +247,149 @@ export default function Project() {
 
   return (
     <main style={styles.container}>
-      <Fade up>
-        <div style={styles.title}>
-          <h1 style={styles.heading}>PROJECTS</h1>
-        </div>
-        <div style={{
+      <motion.div 
+        variants={fadeUpVariant}
+        initial="hidden"
+        animate="visible"
+        style={styles.title}
+      >
+        <h1 style={styles.heading}>PROJECTS</h1>
+      </motion.div>
+      
+      <motion.div 
+        variants={containerVariant}
+        initial="hidden"
+        animate="visible"
+        style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(450px, 1fr))",
           gap: "30px",
           width: "100%"
-        }}>
-          {projects.map((project, index) => (
-            <section 
-              key={index}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                background: "rgba(255, 255, 255, 0.05)",
-                borderRadius: "12px",
-                overflow: "hidden",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              }}
-            >
-              <div style={{padding: "20px 25px 0"}}>
-                <h2 style={{
-                  fontSize: "1.6rem",
-                  fontWeight: "600",
-                  marginBottom: "10px",
-                  color: "#f8f9fa"
-                }}>
-                  {project.name}
-                </h2>
-                <span style={{
-                  display: "inline-block",
-                  padding: "4px 10px",
-                  borderRadius: "4px",
-                  fontSize: "0.8rem",
-                  fontWeight: "500",
-                  backgroundColor: "#4cc9f0",
-                  color: "#000",
-                  marginBottom: "15px"
-                }}>
-                  {project.type}
-                </span>
-              </div>
-              
-              <div style={{
-                width: "100%",
-                height: "250px",
-                overflow: "hidden"
+        }}
+      >
+        {projects.map((project, index) => (
+          <motion.section 
+            key={index}
+            variants={itemVariant}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              background: "rgba(255, 255, 255, 0.05)",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+            whileHover={{ 
+              y: -5,
+              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)"
+            }}
+          >
+            <div style={{padding: "20px 25px 0"}}>
+              <h2 style={{
+                fontSize: "1.6rem",
+                fontWeight: "600",
+                marginBottom: "10px",
+                color: "#f8f9fa"
               }}>
-                <img 
-                  src={project.image} 
-                  alt={project.name}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.5s ease"
-                  }}
-                />
-              </div>
+                {project.name}
+              </h2>
+              <span style={{
+                display: "inline-block",
+                padding: "4px 10px",
+                borderRadius: "4px",
+                fontSize: "0.8rem",
+                fontWeight: "500",
+                backgroundColor: "#4cc9f0",
+                color: "#000",
+                marginBottom: "15px"
+              }}>
+                {project.type}
+              </span>
+            </div>
+            
+            <div style={{
+              width: "100%",
+              height: "250px",
+              overflow: "hidden"
+            }}>
+              <motion.img 
+                src={project.image} 
+                alt={project.name}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                whileHover={{ 
+                  scale: 1.05
+                }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+            
+            <div style={{padding: "20px 25px", flex: "1"}}>
+              <h3 style={{
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                marginBottom: "8px",
+                color: "#e0e0e0"
+              }}>
+                Description
+              </h3>
+              <p style={{
+                fontSize: "0.95rem",
+                lineHeight: "1.6",
+                color: "#bbbbbb",
+                marginBottom: "20px"
+              }}>
+                {project.description}
+              </p>
               
-              <div style={{padding: "20px 25px", flex: "1"}}>
-                <h3 style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  marginBottom: "8px",
-                  color: "#e0e0e0"
-                }}>
-                  Description
-                </h3>
-                <p style={{
-                  fontSize: "0.95rem",
-                  lineHeight: "1.6",
-                  color: "#bbbbbb",
-                  marginBottom: "20px"
-                }}>
-                  {project.description}
-                </p>
-                
-                <h3 style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  marginBottom: "8px",
-                  color: "#e0e0e0"
-                }}>
-                  Tech
-                </h3>
-                <p style={{
-                  color: "#8ebfff",
-                  fontSize: "0.9rem",
-                  marginBottom: "20px"
-                }}>
-                  {project.tech}
-                </p>
-                
-                {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "8px 16px",
-                      backgroundColor: "transparent",
-                      border: "1px solid #4cc9f0",
-                      borderRadius: "4px",
-                      color: "#4cc9f0",
-                      textDecoration: "none",
-                      fontSize: "0.9rem",
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    Live version <FiExternalLink style={{marginLeft: "6px"}} />
-                  </a>
-                )}
-              </div>
-            </section>
-          ))}
-        </div>
-      </Fade>
+              <h3 style={{
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                marginBottom: "8px",
+                color: "#e0e0e0"
+              }}>
+                Tech
+              </h3>
+              <p style={{
+                color: "#8ebfff",
+                fontSize: "0.9rem",
+                marginBottom: "20px"
+              }}>
+                {project.tech}
+              </p>
+              
+              {project.live && (
+                <motion.a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    padding: "8px 16px",
+                    backgroundColor: "transparent",
+                    border: "1px solid #4cc9f0",
+                    borderRadius: "4px",
+                    color: "#4cc9f0",
+                    textDecoration: "none",
+                    fontSize: "0.9rem",
+                  }}
+                  whileHover={{ 
+                    backgroundColor: "#4cc9f0",
+                    color: "#000"
+                  }}
+                >
+                  Live version <FiExternalLink style={{marginLeft: "6px"}} />
+                </motion.a>
+              )}
+            </div>
+          </motion.section>
+        ))}
+      </motion.div>
     </main>
   );
 }
