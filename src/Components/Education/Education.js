@@ -89,13 +89,13 @@ export default function Education() {
         animate="visible"
         style={{
           textAlign: "center",
-          marginBottom: "40px"
+          marginBottom: "50px" // Increased spacing
         }}
       >
         <h1 style={{
           fontSize: "2.5rem",
           fontWeight: "bold",
-          background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
+          background: "var(--gradient-text)", // Use variable
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -110,7 +110,7 @@ export default function Education() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "30px"
+          gap: "35px" // Increased gap
         }}
       >
         {education.map((element, index) => {
@@ -118,36 +118,41 @@ export default function Education() {
             <motion.div 
               key={index}
               variants={itemVariant}
+              whileHover={{ // Add hover effect
+                y: -5,
+                boxShadow: `0 15px 35px ${"var(--shadow-color)"}`
+              }}
               style={{
                 display: "flex",
                 flexDirection: isMobile ? "column" : "row",
-                alignItems: isMobile ? "flex-start" : "center",
-                background: "rgba(255, 255, 255, 0.05)",
-                borderRadius: "12px",
+                alignItems: isMobile ? "center" : "center", // Center items vertically
+                background: "var(--card-bg)", // Use variable
+                borderRadius: "15px", // More rounded
                 overflow: "hidden",
-                padding: "25px",
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
-                transition: "transform 0.3s ease",
+                padding: "30px", // Increased padding
+                boxShadow: `0 10px 30px ${"var(--shadow-color)"}`, // Use variable
+                transition: "transform 0.3s ease, box-shadow 0.3s ease", // Ensure transition is defined
+                textAlign: isMobile ? "center" : "left", // Center text on mobile
               }}
             >
               <div style={{
-                width: "120px",
-                height: "120px",
+                width: "100px", // Slightly smaller logo container
+                height: "100px",
+                flexShrink: 0, // Prevent shrinking
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                background: "rgba(255, 255, 255, 0.9)",
-                borderRadius: "12px",
-                padding: "15px",
-                marginRight: isMobile ? 0 : "25px",
+                background: "#ffffff", // Keep white background for logos
+                borderRadius: "15px", // Match card rounding
+                padding: "10px", // Adjust padding
+                marginRight: isMobile ? 0 : "30px", // Increased margin
                 marginBottom: isMobile ? "20px" : 0,
-                alignSelf: isMobile ? "center" : "flex-start",
                 boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)"
               }}>
                 <img
                   style={{
-                    maxWidth: "85%",
-                    maxHeight: "85%",
+                    maxWidth: "80%", // Adjust size
+                    maxHeight: "80%",
                     objectFit: "contain",
                     filter: "brightness(1)"
                   }}
@@ -155,18 +160,17 @@ export default function Education() {
                   alt={element.alt}
                 />
               </div>
-              <div>
+              <div style={{ flexGrow: 1 }}> {/* Allow text content to grow */}
                 <h2 style={{
-                  fontSize: "1.5rem",
+                  fontSize: "1.4rem", // Adjust size
                   fontWeight: "600",
-                  marginBottom: "8px",
-                  color: "#f8f9fa",
-                  textAlign: isMobile ? "center" : "left"
+                  marginBottom: "10px", // Increased spacing
+                  color: "var(--text-highlight)", // Use variable
                 }}>{element.title}</h2>
                 <p style={{
                   fontSize: "1rem",
-                  lineHeight: "1.6",
-                  color: "#e0e0e0"
+                  lineHeight: "1.7", // Slightly increased line height
+                  color: "var(--text-primary)" // Use variable
                 }}>{element.text}</p>
               </div>
             </motion.div>

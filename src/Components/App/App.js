@@ -10,8 +10,8 @@ function App() {
   const styles = {
     app: {
       minHeight: "100vh",
-      backgroundColor: "#1a1a2e", // Dark blue background
-      color: "#ffffff",
+      backgroundColor: "var(--bg-color)", // Use CSS variable
+      color: "var(--text-primary)", // Use CSS variable
       fontFamily: "'Poppins', sans-serif",
       transition: "all 0.3s ease"
     },

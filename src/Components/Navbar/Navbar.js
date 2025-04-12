@@ -45,11 +45,12 @@ export default function Navbar() {
       alignItems: "center",
       padding: "20px 0",
       position: "relative",
-      marginBottom: "40px"
+      marginBottom: "40px",
+      borderBottom: "1px solid rgba(255, 255, 255, 0.1)" // Add subtle separator
     }}>
       <img
         style={{
-          width: "220px",
+          width: "200px", // Slightly smaller logo
           transition: "all 0.3s ease",
           filter: "drop-shadow(0 0 8px rgba(255, 255, 255, 0.3))"
         }}
@@ -62,10 +63,11 @@ export default function Navbar() {
           display: isMobile ? "block" : "none",
           background: "none",
           border: "none",
-          color: "white", 
-          fontSize: "1.5rem",
+          color: "var(--text-highlight)", // Use variable
+          fontSize: "1.8rem", // Larger icon
           cursor: "pointer",
-          zIndex: 10
+          zIndex: 10,
+          padding: "5px" // Add padding for easier clicking
         }}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
@@ -82,39 +84,44 @@ export default function Navbar() {
           ...(isMobile && {
             flexDirection: "column",
             position: "absolute",
-            top: "100%",
+            top: "100%", // Position below the navbar
             right: 0,
-            backgroundColor: "rgba(26, 26, 46, 0.95)",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-            transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
+            width: "250px", // Fixed width for mobile menu
+            backgroundColor: "rgba(15, 15, 26, 0.98)", // Use darker bg color with high opacity
+            padding: "30px", // More padding
+            borderRadius: "0 0 8px 8px", // Round bottom corners
+            boxShadow: "0 15px 30px rgba(0, 0, 0, 0.4)", // Stronger shadow
+            backdropFilter: "blur(5px)", // Subtle blur effect
+            WebkitBackdropFilter: "blur(5px)", // For Safari
+            transform: isMenuOpen ? "translateY(0)" : "translateY(-10px)", // Slide down animation
             opacity: isMenuOpen ? 1 : 0,
-            transition: "all 0.3s ease",
+            visibility: isMenuOpen ? "visible" : "hidden", // Use visibility for better accessibility
+            transition: "all 0.3s ease-out", // Smoother transition
             zIndex: 100
           })
         }}
       >
         {navItems.map((item, index) => (
           <li key={index} style={{
-            margin: isMobile ? "15px 0" : "0 20px",
+            margin: isMobile ? "10px 0" : "0 25px", // Adjust spacing
             position: "relative"
           }}>
             <Link 
               to={item.path} 
               style={{
-                color: activeLink === item.name ? "#4cc9f0" : "white",
+                color: activeLink === item.name ? "var(--primary-accent)" : "var(--text-highlight)", // Use variables
                 textDecoration: "none",
-                fontSize: "1.2rem",
+                fontSize: "1.1rem", // Slightly smaller font
                 fontWeight: 500,
                 padding: "8px 0",
                 display: "inline-block",
                 position: "relative",
                 transition: "all 0.3s ease",
-                borderBottom: 
-                  hoveredLink === item.name || activeLink === item.name
-                    ? "2px solid #4cc9f0" 
-                    : "2px solid transparent",
+                borderBottom: "2px solid transparent", // Prepare for hover effect
+                ...( (hoveredLink === item.name || activeLink === item.name) && { // Combine hover/active
+                  color: "var(--primary-accent)",
+                  borderBottomColor: "var(--primary-accent)"
+                })
               }}
               onClick={() => {
                 setIsMenuOpen(false);

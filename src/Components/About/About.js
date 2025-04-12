@@ -53,8 +53,8 @@ export default function About() {
       flexWrap: "wrap",
       justifyContent: "space-between",
       alignItems: isMobile ? "center" : "flex-start",
-      gap: isMobile ? "30px" : "50px",
-      padding: "20px 0",
+      gap: isMobile ? "40px" : "60px",
+      padding: "40px 0",
     },
     imageSection: {
       flex: "1 1 400px",
@@ -64,12 +64,13 @@ export default function About() {
     },
     image: {
       width: "100%",
-      maxWidth: isMobile ? "300px" : "500px",
+      maxWidth: isMobile ? "300px" : "450px",
       height: "auto",
       objectFit: "cover",
-      borderRadius: "10px",
-      boxShadow: "0 16px 32px rgba(0, 0, 0, 0.25)",
-      transition: "transform 0.3s ease",
+      borderRadius: "15px",
+      border: "3px solid rgba(255, 255, 255, 0.1)",
+      boxShadow: `0 16px 32px var(--shadow-color)`,
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
     },
     contentSection: {
       flex: "1 1 500px",
@@ -78,10 +79,10 @@ export default function About() {
       alignItems: isMobile ? "center" : "flex-start"
     },
     heading: {
-      fontSize: isMobile ? "2rem" : "2.5rem",
+      fontSize: isMobile ? "2.2rem" : "2.8rem",
       fontWeight: "bold",
       marginBottom: "30px",
-      background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
+      background: "var(--gradient-text)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
       backgroundClip: "text",
@@ -90,8 +91,8 @@ export default function About() {
     paragraph: {
       fontSize: "1.1rem",
       lineHeight: "1.8",
-      marginBottom: "20px",
-      color: "#e0e0e0",
+      marginBottom: "25px",
+      color: "var(--text-primary)",
       textAlign: isMobile ? "center" : "left"
     },
     contactHeading: {
@@ -99,12 +100,12 @@ export default function About() {
       fontWeight: "600",
       marginTop: "30px",
       marginBottom: "20px",
-      color: "#f8f9fa",
+      color: "var(--text-highlight)",
       textAlign: isMobile ? "center" : "left"
     },
     socialIcons: {
       display: "flex",
-      gap: "20px",
+      gap: "25px",
       justifyContent: isMobile ? "center" : "flex-start"
     }
   };
@@ -133,10 +134,10 @@ export default function About() {
         <div style={styles.socialIcons}>
           <SocialIcon
             style={{
-              margin: "10px 10px 10px 0", 
-              transform: hoveredIcon === 'linkedin' ? "scale(1.15)" : "scale(1)", 
+              transform: hoveredIcon === 'linkedin' ? "scale(1.15) translateY(-3px)" : "scale(1) translateY(0)", 
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              boxShadow: hoveredIcon === 'linkedin' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
+              boxShadow: hoveredIcon === 'linkedin' ? `0 10px 20px var(--hover-shadow-color)` : "none",
+              borderRadius: '50%',
             }}
             className="some_icon"
             url="https://www.linkedin.com/in/juhani-rajalahti-b822b911/"
@@ -147,10 +148,10 @@ export default function About() {
           />
           <SocialIcon
             style={{
-              margin: "10px", 
-              transform: hoveredIcon === 'github' ? "scale(1.15)" : "scale(1)", 
+              transform: hoveredIcon === 'github' ? "scale(1.15) translateY(-3px)" : "scale(1) translateY(0)", 
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              boxShadow: hoveredIcon === 'github' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
+              boxShadow: hoveredIcon === 'github' ? `0 10px 20px var(--hover-shadow-color)` : "none",
+              borderRadius: '50%',
             }}
             className="some_icon"
             url="https://github.com/rajalahti"
@@ -161,10 +162,10 @@ export default function About() {
           />
           <SocialIcon
             style={{
-              margin: "10px", 
-              transform: hoveredIcon === 'email' ? "scale(1.15)" : "scale(1)", 
+              transform: hoveredIcon === 'email' ? "scale(1.15) translateY(-3px)" : "scale(1) translateY(0)", 
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              boxShadow: hoveredIcon === 'email' ? "0 10px 20px rgba(76, 201, 240, 0.3)" : "none",
+              boxShadow: hoveredIcon === 'email' ? `0 10px 20px var(--hover-shadow-color)` : "none",
+              borderRadius: '50%',
             }}
             className="some_icon"
             url="mailto:juhani.rajalahti@gmail.com"

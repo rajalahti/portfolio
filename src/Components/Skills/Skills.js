@@ -8,7 +8,7 @@ export default function Skills() {
       padding: "20px 0 60px",
       display: "flex",
       flexDirection: "column",
-      gap: "40px"
+      gap: "80px" // Increased gap between sections
     }}>
       <Education />
       <Tech />

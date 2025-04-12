@@ -86,13 +86,13 @@ export default function Tech() {
         animate="visible"
         style={{
           textAlign: "center",
-          marginBottom: "40px"
+          marginBottom: "50px" // Increased spacing
         }}
       >
         <h1 style={{
           fontSize: "2.5rem",
           fontWeight: "bold",
-          background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
+          background: "var(--gradient-text)", // Use variable
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -107,9 +107,9 @@ export default function Tech() {
         style={{
           display: "grid",
           gridTemplateColumns: isMobile 
-            ? "repeat(auto-fill, minmax(120px, 1fr))" 
-            : "repeat(auto-fill, minmax(150px, 1fr))",
-          gap: isMobile ? "15px" : "25px",
+            ? "repeat(auto-fill, minmax(100px, 1fr))" // Adjust minmax for mobile
+            : "repeat(auto-fill, minmax(140px, 1fr))", // Adjust minmax for desktop
+          gap: isMobile ? "20px" : "30px", // Increased gap
           padding: "20px 0"
         }}
       >
@@ -118,31 +118,35 @@ export default function Tech() {
             key={index}
             variants={itemVariant}
             whileHover={{ 
-              y: -10,
-              backgroundColor: "rgba(255, 255, 255, 0.1)" 
+              y: -8, // Lift effect
+              backgroundColor: "rgba(255, 255, 255, 0.1)", // Slightly lighter background
+              boxShadow: `0 8px 15px ${"var(--shadow-color)"}` // Add shadow on hover
             }}
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              padding: isMobile ? "15px" : "20px",
-              background: "rgba(255, 255, 255, 0.05)",
-              borderRadius: "12px",
+              justifyContent: "center", // Center content vertically
+              padding: isMobile ? "20px 10px" : "25px", // Adjust padding
+              background: "var(--card-bg)", // Use variable
+              borderRadius: "15px", // More rounded
               cursor: "default",
+              aspectRatio: "1 / 1", // Make items square-ish
+              transition: "background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease", // Add transitions
             }}
           >
             <item.Icon 
-              size={isMobile ? "3em" : "4em"} 
+              size={isMobile ? "3.5em" : "4.5em"} // Slightly larger icons
               color={item.color}
               style={{
-                filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))",
+                filter: `drop-shadow(0 0 8px ${item.color}aa)`, // Add colored glow effect
                 margin: "0 0 15px 0"
               }}
             />
             <span style={{
               fontSize: isMobile ? "0.8rem" : "0.9rem",
               fontWeight: "500",
-              color: "#f8f9fa",
+              color: "var(--text-highlight)", // Use variable
               textAlign: "center"
             }}>
               {item.title}

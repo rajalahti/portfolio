@@ -134,126 +134,23 @@ export default function Project() {
     }
   };
 
-  const styles = {
-    container: {
-      padding: "20px 0 60px",
-    },
-    title: {
-      marginBottom: "40px",
-      textAlign: "center"
-    },
-    heading: {
-      fontSize: "2.5rem",
-      fontWeight: "bold",
-      background: "linear-gradient(90deg, #4cc9f0, #7209b7)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      backgroundClip: "text",
-      display: "inline-block"
-    },
-    projectsGrid: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fill, minmax(500px, 1fr))",
-      gap: "30px",
-      width: "100%",
-      "@media (max-width: 768px)": {
-        gridTemplateColumns: "1fr"
-      }
-    },
-    projectCard: {
-      display: "flex",
-      flexDirection: "column",
-      background: "rgba(255, 255, 255, 0.05)",
-      borderRadius: "12px",
-      overflow: "hidden",
-      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
-      transition: "transform 0.3s ease, box-shadow 0.3s ease",
-      "&:hover": {
-        transform: "translateY(-5px)",
-        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)"
-      }
-    },
-    cardHeader: {
-      padding: "20px 25px 0",
-    },
-    cardTitle: {
-      fontSize: "1.6rem",
-      fontWeight: "600",
-      marginBottom: "10px",
-      color: "#f8f9fa"
-    },
-    cardType: {
-      display: "inline-block",
-      padding: "4px 10px",
-      borderRadius: "4px",
-      fontSize: "0.8rem",
-      fontWeight: "500",
-      backgroundColor: "#4cc9f0",
-      color: "#000",
-      marginBottom: "15px"
-    },
-    imageContainer: {
-      width: "100%",
-      height: "250px",
-      overflow: "hidden"
-    },
-    projectImage: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      transition: "transform 0.5s ease"
-    },
-    cardContent: {
-      padding: "20px 25px",
-      flex: "1"
-    },
-    sectionTitle: {
-      fontSize: "1.1rem",
-      fontWeight: "600",
-      marginBottom: "8px",
-      color: "#e0e0e0"
-    },
-    description: {
-      fontSize: "0.95rem",
-      lineHeight: "1.6",
-      color: "#bbbbbb",
-      marginBottom: "20px"
-    },
-    techStack: {
-      color: "#8ebfff",
-      fontSize: "0.9rem",
-      marginBottom: "20px"
-    },
-    linkButton: {
-      display: "inline-flex",
-      alignItems: "center",
-      padding: "8px 16px",
-      backgroundColor: "transparent",
-      border: "1px solid #4cc9f0",
-      borderRadius: "4px",
-      color: "#4cc9f0",
-      textDecoration: "none",
-      fontSize: "0.9rem",
-      transition: "all 0.3s ease",
-      "&:hover": {
-        backgroundColor: "#4cc9f0",
-        color: "#000"
-      }
-    },
-    linkIcon: {
-      marginLeft: "6px"
-    }
-  };
-
   return (
-    <main style={styles.container}>
+    <main style={{ padding: "20px 0 60px" }}>
       <motion.div 
         variants={fadeUpVariant}
         initial="hidden"
         animate="visible"
-        style={styles.title}
+        style={{ marginBottom: "50px", textAlign: "center" }}
       >
-        <h1 style={styles.heading}>PROJECTS</h1>
+        <h1 style={{
+          fontSize: "2.5rem",
+          fontWeight: "bold",
+          background: "var(--gradient-text)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          display: "inline-block"
+        }}>PROJECTS</h1>
       </motion.div>
       
       <motion.div 
@@ -262,8 +159,8 @@ export default function Project() {
         animate="visible"
         style={{
           display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(450px, 1fr))",
-          gap: "30px",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(400px, 1fr))",
+          gap: "35px",
           width: "100%"
         }}
       >
@@ -274,35 +171,35 @@ export default function Project() {
             style={{
               display: "flex",
               flexDirection: "column",
-              background: "rgba(255, 255, 255, 0.05)",
-              borderRadius: "12px",
+              background: "var(--card-bg)",
+              borderRadius: "15px",
               overflow: "hidden",
-              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+              boxShadow: `0 10px 30px ${"var(--shadow-color)"}`,
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
             }}
             whileHover={{ 
-              y: -5,
-              boxShadow: "0 15px 35px rgba(0, 0, 0, 0.4)"
+              y: -8,
+              boxShadow: `0 18px 40px ${"var(--shadow-color)"}`
             }}
           >
-            <div style={{padding: "20px 25px 0"}}>
+            <div style={{padding: "25px 30px 0"}}>
               <h2 style={{
-                fontSize: "1.6rem",
+                fontSize: "1.5rem",
                 fontWeight: "600",
-                marginBottom: "10px",
-                color: "#f8f9fa"
+                marginBottom: "12px",
+                color: "var(--text-highlight)"
               }}>
                 {project.name}
               </h2>
               <span style={{
                 display: "inline-block",
-                padding: "4px 10px",
-                borderRadius: "4px",
-                fontSize: "0.8rem",
+                padding: "5px 12px",
+                borderRadius: "6px",
+                fontSize: "0.85rem",
                 fontWeight: "500",
-                backgroundColor: "#4cc9f0",
-                color: "#000",
-                marginBottom: "15px"
+                backgroundColor: "var(--primary-accent)",
+                color: "var(--bg-color)",
+                marginBottom: "20px"
               }}>
                 {project.type}
               </span>
@@ -310,7 +207,7 @@ export default function Project() {
             
             <div style={{
               width: "100%",
-              height: "250px",
+              height: "220px",
               overflow: "hidden"
             }}>
               <motion.img 
@@ -324,24 +221,25 @@ export default function Project() {
                 whileHover={{ 
                   scale: 1.05
                 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
               />
             </div>
             
-            <div style={{padding: "20px 25px", flex: "1"}}>
+            <div style={{padding: "25px 30px", flex: "1", display: "flex", flexDirection: "column"}}>
               <h3 style={{
                 fontSize: "1.1rem",
                 fontWeight: "600",
-                marginBottom: "8px",
-                color: "#e0e0e0"
+                marginBottom: "10px",
+                color: "var(--text-highlight)"
               }}>
                 Description
               </h3>
               <p style={{
                 fontSize: "0.95rem",
-                lineHeight: "1.6",
-                color: "#bbbbbb",
-                marginBottom: "20px"
+                lineHeight: "1.7",
+                color: "var(--text-primary)",
+                marginBottom: "25px",
+                flexGrow: 1
               }}>
                 {project.description}
               </p>
@@ -349,15 +247,16 @@ export default function Project() {
               <h3 style={{
                 fontSize: "1.1rem",
                 fontWeight: "600",
-                marginBottom: "8px",
-                color: "#e0e0e0"
+                marginBottom: "10px",
+                color: "var(--text-highlight)"
               }}>
                 Tech
               </h3>
               <p style={{
-                color: "#8ebfff",
+                color: "var(--primary-accent)",
                 fontSize: "0.9rem",
-                marginBottom: "20px"
+                marginBottom: "25px",
+                fontStyle: "italic"
               }}>
                 {project.tech}
               </p>
@@ -370,20 +269,22 @@ export default function Project() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    padding: "8px 16px",
+                    alignSelf: "flex-start",
+                    padding: "10px 20px",
                     backgroundColor: "transparent",
-                    border: "1px solid #4cc9f0",
-                    borderRadius: "4px",
-                    color: "#4cc9f0",
+                    border: "2px solid var(--primary-accent)",
+                    borderRadius: "8px",
+                    color: "var(--primary-accent)",
                     textDecoration: "none",
-                    fontSize: "0.9rem",
+                    fontSize: "0.95rem",
+                    fontWeight: "500",
                   }}
                   whileHover={{ 
-                    backgroundColor: "#4cc9f0",
-                    color: "#000"
+                    backgroundColor: "var(--primary-accent)",
+                    color: "var(--bg-color)"
                   }}
                 >
-                  Live version <FiExternalLink style={{marginLeft: "6px"}} />
+                  Live version <FiExternalLink style={{marginLeft: "8px"}} />
                 </motion.a>
               )}
             </div>
